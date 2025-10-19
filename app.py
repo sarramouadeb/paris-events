@@ -113,7 +113,7 @@ else:
 
 # Section 1 : Aperçu des données
 with st.container():
-    st.header("📊 Aperçu des Événements")
+    st.header(" Aperçu des Événements")
     st.markdown("Visualisez la répartition des événements par arrondissement et leur localisation.")
     col1, col2 = st.columns([1, 1.5])
     
@@ -171,7 +171,7 @@ with st.container():
 
 # Section 2 : Analyse détaillée
 with st.container():
-    st.header("📈 Analyse Détaillée")
+    st.header("Analyse Détaillée")
     st.markdown("Explorez les tendances et la répartition des types d'accès.")
     st.markdown("<hr>", unsafe_allow_html=True)
     
@@ -217,7 +217,7 @@ with st.container():
 
 # Section 3 : Exploration des données
 with st.container():
-    st.header("🔍 Explorer les Événements")
+    st.header("Explorer les Événements")
     st.markdown("Filtrez et explorez les détails des événements, y compris les conditions d'accès dans 'Détails du Tarif' ou 'Description'.")
     st.markdown("<hr>", unsafe_allow_html=True)
     
@@ -241,7 +241,3 @@ with st.container():
             "description": st.column_config.TextColumn("Description", width="large")
         }
     )
-
-# Pied de page
-st.markdown("<hr>", unsafe_allow_html=True)
-st.markdown("**Paris Events Explorer** - Développé avec Streamlit | Données : [Que Faire à Paris ?](https://opendata.paris.fr/) | 19 octobre 2025")
