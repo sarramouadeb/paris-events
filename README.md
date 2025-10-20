@@ -102,10 +102,10 @@ copy .env.example .env
 Deployment
 The app is deployed on Streamlit Community Cloud (free tier):
 
-Live Demo: [Insert URL after deployment, e.g., https://sarramouadeb-paris-events.streamlit.app\]
+
 Repository: https://github.com/sarramouadeb/paris-events
 Environment Variable: DB_PATH=events.db (set in Streamlit Cloud settings)
-Setup: If setup.py is included, it auto-fetches data and creates events.db on startup.
+
 
 Deploy Your Own Instance
 

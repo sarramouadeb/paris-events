@@ -4,6 +4,7 @@ import sqlite3
 import plotly.express as px
 import os
 from dotenv import load_dotenv
+import setup  # Import and run setup.py to ensure database creation
 
 # Configuration du thème
 st.set_page_config(page_title="Paris Events Explorer", layout="wide", page_icon="🎭")
@@ -76,7 +77,7 @@ try:
     df = pd.read_sql_query("SELECT * FROM events", conn)
     conn.close()
 except Exception as e:
-    st.error(f"Erreur de base de données : {e}. Veuillez exécuter fetch_data.py et load_to_db.py d'abord.")
+    st.error(f"Erreur de base de données : {e}. Veuillez vérifier que les données sont disponibles.")
     st.stop()
 
 # Nettoyage et préparation des données
@@ -113,7 +114,7 @@ else:
 
 # Section 1 : Aperçu des données
 with st.container():
-    st.header(" Aperçu des Événements")
+    st.header("📊 Aperçu des Événements")
     st.markdown("Visualisez la répartition des événements par arrondissement et leur localisation.")
     col1, col2 = st.columns([1, 1.5])
     
@@ -152,13 +153,13 @@ with st.container():
                 lon='longitude',
                 color='access_type',
                 size='count',
-                size_max=25,  # Augmenter la taille des points
+                size_max=25,
                 zoom=11,
                 mapbox_style="open-street-map",
                 title='Localisation des Événements par Type d\'Accès',
                 hover_data={'access_type': True, 'title': True, 'count': True},
                 height=450,
-                color_discrete_sequence=px.colors.qualitative.Vivid  # Palette plus vive
+                color_discrete_sequence=px.colors.qualitative.Vivid
             )
             fig2.update_layout(
                 mapbox_center={"lat": 48.8566, "lon": 2.3522},
@@ -171,7 +172,7 @@ with st.container():
 
 # Section 2 : Analyse détaillée
 with st.container():
-    st.header("Analyse Détaillée")
+    st.header("📈 Analyse Détaillée")
     st.markdown("Explorez les tendances et la répartition des types d'accès.")
     st.markdown("<hr>", unsafe_allow_html=True)
     
@@ -217,11 +218,10 @@ with st.container():
 
 # Section 3 : Exploration des données
 with st.container():
-    st.header("Explorer les Événements")
+    st.header("🔍 Explorer les Événements")
     st.markdown("Filtrez et explorez les détails des événements, y compris les conditions d'accès dans 'Détails du Tarif' ou 'Description'.")
     st.markdown("<hr>", unsafe_allow_html=True)
     
-    # Vérifier si price_detail existe dans le DataFrame
     columns_to_display = ['title', 'date_start', 'price_type', 'access_type', 'arrondissement', 'address_name', 'description']
     if 'price_detail' in df_filtered.columns:
         columns_to_display.insert(-1, 'price_detail')
@@ -241,3 +241,7 @@ with st.container():
             "description": st.column_config.TextColumn("Description", width="large")
         }
     )
+
+# Pied de page
+st.markdown("<hr>", unsafe_allow_html=True)
+st.markdown("**Paris Events Explorer** - Développé avec Streamlit | Données : [Que Faire à Paris ?](https://opendata.paris.fr/) | 19 octobre 2025")
