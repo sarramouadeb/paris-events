@@ -149,13 +149,3 @@ Database Issues:
 Verify events.db:
 sqlite3 events.db "SELECT count(*) FROM events;"
 
-
-
-
-Deployment Errors:
-Check Streamlit Cloud logs (app > "Manage app" > "Logs").
-Ensure requirements.txt matches the dependency versions above.
-
-
-
-For issues, open a ticket on GitHub Issues.

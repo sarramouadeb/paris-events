@@ -147,7 +147,13 @@ with st.container():
     with col2:
         if len(df_viz) > 0 and df_viz['access_type'].notna().sum() > 0:
             map_data = df_viz.groupby(['latitude', 'longitude', 'access_type', 'title']).size().reset_index(name='count')
-            fig2 = px.scatter_mapbox(
+            # Use scatter_map if available (newer Plotly), otherwise fall back to scatter_mapbox
+            scatter_map_fn = getattr(px, 'scatter_map', getattr(px, 'scatter_mapbox', None))
+            if scatter_map_fn is None:
+                st.error('Plotly does not provide scatter_map or scatter_mapbox in this environment. Please install a compatible plotly version.')
+                st.stop()
+
+            fig2 = scatter_map_fn(
                 map_data,
                 lat='latitude',
                 lon='longitude',
