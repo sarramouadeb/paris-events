@@ -44,3 +44,12 @@ def fetch_events_data(max_records=2000):
 
 if __name__ == "__main__":
     fetch_events_data()
+
+
+# Backwards-compatible wrapper expected by other modules
+def fetch_data(max_records=2000):
+    """Compatibility wrapper so callers can import fetch_data.fetch_data().
+
+    Delegates to fetch_events_data.
+    """
+    return fetch_events_data(max_records)
