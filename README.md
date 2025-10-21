@@ -1,7 +1,7 @@
 
- Paris Events Explorer
+ # Paris Events Explorer
 
-Overview
+# Overview
 Paris Events Explorer is an interactive web application built with Streamlit to visualize and analyze cultural events in Paris using data from the Que Faire à Paris? API. The app stores data in a SQLite database and offers:
 
 Interactive Visualizations: Bar, map, pie, and line charts.
@@ -17,8 +17,8 @@ The project requires the following Python packages:
 
 
 
-Package
-Version
+# Package
+# Version
 
 
 
@@ -45,52 +45,52 @@ python-dotenv
 
 Note: Python's built-in sqlite3 module is used (no installation needed).
 
-Local Setup
+# Local Setup
 To run the project locally on a Windows machine, follow these steps:
 
-Clone the Repository:
+# Clone the Repository:
 git clone https://github.com/sarramouadeb/paris-events.git
 cd paris-events
 
 
-Create and Activate a Virtual Environment:
+# Create and Activate a Virtual Environment:
 python -m venv venv
 call venv\Scripts\activate
 
 
-Install Dependencies:
+# Install Dependencies:
 pip install requests==2.32.3 pandas==2.2.2 streamlit==1.38.0 plotly==5.22.0 python-dotenv==1.0.1
 
 
-Fetch Data:
+# Fetch Data:
 python fetch_data.py
 
 
 Creates data/raw_events.json with event data from the Paris Open Data API.
 
 
-Load Data to SQLite:
+# Load Data to SQLite:
 python load_to_db.py
 
 
 Generates events.db from the JSON data.
 
 
-Analyze Data:
+# Analyze Data:
 python analyze.py
 
 
 Performs additional data processing (if required).
 
 
-Run the Streamlit App:
+# Run the Streamlit App:
 streamlit run app.py
 
 
-Open http://localhost:8501 in your browser.
+# Open http://localhost:8501 in your browser.
 
 
-Configure Environment:
+# Configure Environment:
 
 Ensure .env exists with DB_PATH=events.db:
 copy .env.example .env
@@ -99,25 +99,13 @@ copy .env.example .env
 
 
 
-Deployment
-The app is deployed on Streamlit Community Cloud (free tier):
 
 
 Repository: https://github.com/sarramouadeb/paris-events
 Environment Variable: DB_PATH=events.db (set in Streamlit Cloud settings)
 
 
-Deploy Your Own Instance
 
-Push the repository to GitHub (public repo required for free tier).
-Sign in to share.streamlit.io with GitHub.
-Click "New app", select sarramouadeb/paris-events, set:
-Branch: main
-Main file: app.py
-
-
-In "Advanced settings", add: DB_PATH=events.db.
-Click "Deploy" to get a public URL.
 
 Notes
 
@@ -137,15 +125,5 @@ Troubleshooting
 API Rate Limits:
 If fetch_data.py fails, add a delay in the API loop:
 import time
-# Inside fetch_data.py loop
-time.sleep(1)
 
-
-Re-run and push changes.
-
-
-
-Database Issues:
-Verify events.db:
-sqlite3 events.db "SELECT count(*) FROM events;"
 
